@@ -2,8 +2,9 @@
 #define tree_h
 
 #include <stdio.h>
+
 /**
- * @brief 
+ * @brief struct da árvore
  * 
  */
 typedef struct node
@@ -13,52 +14,52 @@ typedef struct node
     struct node *left;
     struct node *right;
 } node;
-/**
- * @brief Create a node object
- * 
- * @return node* 
- */
 
+
+/**
+ * @brief Cria um nó de árvores cujos filhos são ponteiros para NULL
+ * e aloca 2 bytes para o ponteiro para void de items
+ * 
+ * @return O ponteiro para a árvore
+ */
 node *create_node();
-/**
- * @brief Create a tree object
- * 
- * @param item 
- * @param left 
- * @param right 
- * @return node* 
- */
 
+
+/**
+ * @brief Cria uma árvore cujos filhos são "left" e "right"
+ * 
+ * @param item ponteiro para o item
+ * @param left filho da esquerda
+ * @param right filho da direita
+ * @return ponteiro para a árvore
+ */
 node *create_tree(void *item, node *left, node *right);
-/**
- * @brief 
- * 
- * @param tree 
- */
 
-void print_tree(node *tree);
+
 /**
- * @brief 
+ * @brief imprime a árvore na tela
  * 
- * @param tree 
- * @param compacted_file 
+ * @param tree ponteiro para a árvore
+ */
+void print_tree(node *tree);
+
+
+/**
+ * @brief Salva a árvore no arquivo
+ * 
+ * @param tree ponteiro para a árvore
+ * @param compacted_file ponteiro para o arquivo
  */
 void save_tree(node *tree, FILE *compacted_file);
+
+
 /**
- * @brief 
+ * @brief aloca um espaço para um contador que inicia de zero
  * 
- * @return unsigned short* 
+ * @return O ponteiro do contador
  */
 unsigned short *allocate_counter();
-/**
- * @brief 
- * 
- * @param tree 
- */
-void deallocate_tree(node *tree);
-/**
- * @brief 
- * 
- */
+
+//void deallocate_tree(node *tree);
 
 #endif
