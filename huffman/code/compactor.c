@@ -37,7 +37,7 @@ int check_path()
     }
     else
     {
-        printf("O arquivo a compactar não existe. Por favor checar \"path.txt\"\n");
+        printf("\nO arquivo a compactar não existe. Por favor checar \"path.txt\"\n");
         return ERROR;
     }
     
@@ -200,6 +200,6 @@ int compact()
     fclose(compacted_file);
     //deallocate_hash(map);
     printf("\r                     ");
-    printf("\rcompactation finished.");
+    printf("\rcompactation finished.\n");
     return 0;
 }

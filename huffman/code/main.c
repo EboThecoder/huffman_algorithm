@@ -12,11 +12,35 @@
 int main()
 {
     int a;
-    scanf("%d", &a);
-    if(a == 1)
+    printf("_____________________________________________________________________________\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");
+    printf("||                                                                         ||\n");     
+    printf("||                                                                         ||\n");         
+    printf("||                                                                         ||\n");                 
+    printf("||   Ebert Henrique - Rafael Anacleto - Tiago Beltrão - Ronaldo Cândido    ||\n");         
+    printf("||                                                                         ||\n");    
+    printf("||_________________________________________________________________________||\n\n");
+
+    while(a != 3)
     {
-        if(compact()) return 0;
+        printf("Menu:\n\nDigite [1] para compactar.\nDigite [2] para descompactar.\nDigite [3] para sair.\n\n");
+        printf("Digite: ");
+        scanf("%d", &a);
+        if(a == 1)
+        {
+            if(compact())
+            {
+                printf("Retornando para o menu...\n\n");
+            }
+        }
+        if(a == 2) descompact();
     }
-    if(!a) descompact();
     return 0;
 }
