@@ -27,7 +27,7 @@ int check_path()
 
         if (size == 0)
         {
-            printf("O arquivo a compactar está vazio. Por favor checar \"path.txt\"\n");
+            printf("\nO arquivo a compactar está vazio. Por favor checar \"path.txt\"\n");
             return ERROR;
         }
         else
@@ -121,7 +121,7 @@ node *build_tree(heap *heap)
     FILE *path = fopen("path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
-    printf("building heap...");
+    printf("\nbuilding heap...\n");
     FILE *file = fopen(path_string, "r");
     while (fscanf(file, "%c", &ch) != EOF)
     {
@@ -143,9 +143,8 @@ node *build_tree(heap *heap)
         enqueue(heap, node);
     }
     fclose(file);
-    //print_heap(heap);
-    printf("\r                     ");
-    printf("\rbuilding tree...");
+    //print_heap(heap);    
+    printf("\nbuilding tree...\n");
     node *left, *right, *parent;
     while (heap->size != 1)
     {
@@ -169,8 +168,7 @@ int compact()
     }
     heap *heap = create_heap();
     node *tree = build_tree(heap);
-    printf("\r                     ");
-    printf("\rtree built");
+    printf("\ntree built\n");
     //print_tree(tree);
     //printf("\n\n");
 
@@ -179,27 +177,23 @@ int compact()
     unsigned short *tree_size, *trash_size;
     tree_size = allocate_counter();
     trash_size = allocate_counter();
-    printf("\r                     ");
-    printf("\rbuilding hash table...");
+    printf("\nbuilding hash table...\n");
     build_map(tree, map, -1, bits, START_JUMP, tree_size);
-    printf("\r                     ");
-    printf("\rhash table built.");
+    printf("\nhash table built.\n");
     //print_map(map);
-    printf("\r                     ");
-    printf("\rgetting trash size...");
+    printf("\ngetting trash size...\n");
     get_trash_size(map, trash_size);
     //printf("tree size: %d, trash size: %d\n\n", *tree_size, *trash_size);
 
     FILE *compacted_file = fopen("../compacted_files/compacted_file", "w");
-    printf("\r                     ");
-    printf("\rsaving...");
+    printf("\nsaving...\n");
+    system("clear");
     save_first_2_bytes(trash_size, tree_size, compacted_file);
     save_tree(tree, compacted_file);
     //deallocate_heap(heap);
     save_file(map, compacted_file);
     fclose(compacted_file);
     //deallocate_hash(map);
-    printf("\r                     ");
-    printf("\rcompactation finished.\n");
+    printf("\ncompactation finished.\n\n");
     return 0;
 }
