@@ -28,7 +28,6 @@ node *create_tree(void *item, node *left, node *right)
 
 void print_tree(node *tree)
 {
-    printf("?\n");
     if (tree != NULL)
     {
         if (*(unsigned char *)tree->item == '\\')

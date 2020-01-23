@@ -40,7 +40,13 @@ int main()
                 printf("Retornando para o menu...\n\n");
             }
         }
-        if(a == 2) descompact();
+        if(a == 2)
+        {
+            if (descompact())
+            {
+                printf("Retornando para o menu...\n\n");
+            }
+        }
     }
     return 0;
 }

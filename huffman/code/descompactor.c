@@ -10,6 +10,32 @@
 
 #include "descompactor.h"
 
+int check()
+{
+
+    FILE *file = fopen("../compacted_files/compacted_file", "r");
+    if (file != NULL)
+    {
+        fseek(file, 0, SEEK_END);
+        int size = ftell(file);
+
+        if (size == 0)
+        {
+            printf("\nO arquivo a descompactar está vazio. Por favor checar \"../compacted_files/compacted_file\"\n");
+            return ERROR;
+        }
+        else
+        {
+            return !ERROR;
+        }
+    }
+    else
+    {
+        printf("\nO arquivo a descompactar não existe. Por favor checar \"../compacted_files/compacted_file\"\n");
+        return ERROR;
+    }
+}
+
 int is_bit_i_set(unsigned char c, int i)
 {
     unsigned char mask = 1 << 7 - i;
@@ -20,7 +46,7 @@ void read_first_two_bytes(FILE *file, unsigned short *trash_size, unsigned short
 {
     unsigned char ch[2];
     fscanf(file, "%c%c", &ch[0], &ch[1]);
-    printf("chars %d %d\n", ch[0], ch[1]);
+    
     if (is_bit_i_set(ch[0], 0)) *trash_size += 4;
     if (is_bit_i_set(ch[0], 1)) *trash_size += 2;
     if (is_bit_i_set(ch[0], 2)) *trash_size += 1;
@@ -96,15 +122,22 @@ void read_file(node* tree, unsigned short trash_size, FILE *file)
     fclose(descompacted_file);
 }
 
-void descompact()
+int descompact()
 {
+    if (check() == ERROR)
+    {
+        return ERROR;
+    }
     FILE *file = fopen("../compacted_files/compacted_file", "r");
     unsigned short *trash_size = allocate_counter(), *tree_size = allocate_counter();
     read_first_two_bytes(file, trash_size, tree_size);
     node *tree = read_tree(file);
-    printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
+    //printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
     print_tree(tree);
     printf("\n");
     read_file(tree, *trash_size, file);
     fclose(file);
+    system("clear");
+    printf("descompactaion finished\n");
+    return 0;
 }

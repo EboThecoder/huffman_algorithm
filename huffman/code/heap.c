@@ -153,7 +153,7 @@ node *dequeue(heap *heap)
     }
 }
 
-void deallocate_heap(heap *heap)
+/*void deallocate_heap(heap *heap)
 {
     for(int i=0;i<256;i++)
     {
@@ -161,4 +161,4 @@ void deallocate_heap(heap *heap)
         heap->nodes[i] = NULL;
     }
     free(heap);
-}
+}*/

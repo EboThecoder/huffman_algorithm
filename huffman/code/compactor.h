@@ -1,10 +1,10 @@
 #ifndef compactor_h
 #define compactor_h
+#define ERROR 1
 
 #include "heap.h"
 #include "tree.h"
 
-#define ERROR 1
 
 
 

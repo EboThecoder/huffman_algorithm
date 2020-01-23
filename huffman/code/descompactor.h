@@ -1,5 +1,6 @@
 #ifndef descompactor_h
 #define descompactor_h
+#define ERROR 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,19 +37,20 @@ void read_first_two_bytes(FILE *file, unsigned short *trash_size, unsigned short
 node *read_tree(FILE *file);
 
 /**
- * @brief
+ * @brief lê o arquivo compactado e salva o arquivo descompactado
  * 
- * @param tree 
- * @param trash_size 
- * @param file 
+ * @param tree árvore para decodificar o arquivo compactado
+ * @param trash_size tamanho do lixo
+ * @param file arquivo compactado
  */
 void read_file(node *tree, unsigned short trash_size, FILE *file);
 
-
 /**
- * @brief 
+ * @brief lê o arquivo em "../compacted_files/compacted_file", descompacta o arquivo nele contido
+ * e salva em "../files/descompacted_file"
  * 
+ * @return zero, caso não haja erro, e qualquer outro inteiro, caso contrário
  */
-void descompact();
+int descompact();
 
 #endif

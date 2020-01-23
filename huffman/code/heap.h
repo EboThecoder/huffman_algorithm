@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
+
+
 /**
  * @brief Struct da Heap
  * 
@@ -15,12 +17,16 @@ typedef struct heap
     int size; 
     node *nodes[256];
 } heap;
+
+
 /**
  * @brief Monta a Heap
  * 
  * @return Retorna o ponteiro pra Heap 
  */
 heap *create_heap();
+
+
 /**
  * @brief Pega o índice do nó Pai
  * 
@@ -29,6 +35,8 @@ heap *create_heap();
  * @return Retorna o índice do nó Pai 
  */
 int get_parent_index(heap *heap, int i);
+
+
 /**
  * @brief Pega o índice do filho da esquerda
  * 
@@ -37,6 +45,8 @@ int get_parent_index(heap *heap, int i);
  * @return Retorna o índice do filho da esquerda  
  */
 int get_left_index(heap *heap, int i);
+
+
 /**
  * @brief Pega o índice do filho da direita
  * 
@@ -52,13 +62,17 @@ int get_right_index(heap *heap, int i);
  * @param v O ponteiro para void
  * @param len O tamanho do dados dos ponteiros
  */
-void swap(void *u, void *v, size_t len); ////////////////////////////
+void swap(void *u, void *v, size_t len);
+
+
 /**
  * @brief Imprime a Heap
  * 
  * @param heap O ponteiro para Heap
  */
 void print_heap(heap *heap);
+
+
 /**
  * @brief Ajeita a estrutura da Heap a partir do índice retornando suas propriedades
  * 
@@ -66,6 +80,8 @@ void print_heap(heap *heap);
  * @param i Índice
  */
 void min_heapify(heap *heap, int i);
+
+
 /**
  * @brief Verifica se o item está na Heap
  * 
@@ -74,6 +90,8 @@ void min_heapify(heap *heap, int i);
  * @return Retorna a posição do item na Heap
  */
 int is_in_heap(heap *heap, void *item);
+
+
 /**
  * @brief Enfileira o nó na Heap enquanto não estiver cheia
  * 
@@ -81,6 +99,8 @@ int is_in_heap(heap *heap, void *item);
  * @param new_node Nó para árvore
  */
 void enqueue(heap *heap, node *new_node);
+
+
 /**
  * @brief Desenfileira o primeiro nó da Heap
  * 
@@ -88,6 +108,8 @@ void enqueue(heap *heap, node *new_node);
  * @return Retorna o item desnfileirado e quando a Heap está vazia retorna NULL 
  */
 node *dequeue(heap *heap);
+
+
 /*/**
  * @brief 
  * 
