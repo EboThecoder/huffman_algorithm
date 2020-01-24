@@ -138,6 +138,6 @@ int descompact()
     read_file(tree, *trash_size, file);
     fclose(file);
     system("clear");
-    printf("descompactaion finished\n");
+    printf("\ndescompactaion finished.\n\n");
     return 0;
 }
