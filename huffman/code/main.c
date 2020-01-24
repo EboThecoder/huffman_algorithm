@@ -33,7 +33,13 @@ int main()
     printf("||                                                                         ||\n");                 
     printf("||   Ebert Henrique - Rafael Anacleto - Tiago Beltrão - Ronaldo Cândido    ||\n");         
     printf("||                                                                         ||\n");
-    printf("||_______________Pressione qualquer tecla para continuar:__________________||\n\n");
+    printf("||_________________________________________________________________________||\n\n");
+    printf("--------------------------------INSTRUÇÕES:----------------------------------\n");
+    printf("(1) - Escreva o caminho do arquivo para compactar em \"path.txt\".\n");
+    printf("(2) - O arquivo compactado será salvo em \"../compacted_files\" como \"compacted_file\".\n");
+    printf("(3) - A opção \"descompactar\" utiliza o arquivo salvo em \"../compacted_files/compacted_file\" para descompactar\n");
+    printf("(4) - O arquivo descompactado será salvo em \"../files\" como \"descompacted_file\".\n\n");
+    printf("Digite qualquer tecla para continuar\n");
     getc(stdin);
     system("clear");
     printf("-------------------------MENU-------------------------\n\n");

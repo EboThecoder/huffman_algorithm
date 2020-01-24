@@ -130,12 +130,14 @@ void descompact()
         unsigned short *trash_size = allocate_counter(), *tree_size = allocate_counter();
         read_first_two_bytes(file, trash_size, tree_size);
         node *tree = read_tree(file);
+        printf("Obtendo árvore...");
         //printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
-        print_tree(tree);
+        //print_tree(tree);
         printf("\n");
+        printf("Descompactando arquivo...\n");
         read_file(tree, *trash_size, file);
         fclose(file);
         system("clear");
-        printf("\ndescompactaion finished.\n\n");    
+        printf("Descompactação finalizada. ");    
     }
 }
