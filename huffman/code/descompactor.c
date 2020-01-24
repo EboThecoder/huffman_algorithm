@@ -122,22 +122,20 @@ void read_file(node* tree, unsigned short trash_size, FILE *file)
     fclose(descompacted_file);
 }
 
-int descompact()
+void descompact()
 {
-    if (check() == ERROR)
+    if (check() != ERROR)
     {
-        return ERROR;
+        FILE *file = fopen("../compacted_files/compacted_file", "r");
+        unsigned short *trash_size = allocate_counter(), *tree_size = allocate_counter();
+        read_first_two_bytes(file, trash_size, tree_size);
+        node *tree = read_tree(file);
+        //printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
+        print_tree(tree);
+        printf("\n");
+        read_file(tree, *trash_size, file);
+        fclose(file);
+        system("clear");
+        printf("\ndescompactaion finished.\n\n");    
     }
-    FILE *file = fopen("../compacted_files/compacted_file", "r");
-    unsigned short *trash_size = allocate_counter(), *tree_size = allocate_counter();
-    read_first_two_bytes(file, trash_size, tree_size);
-    node *tree = read_tree(file);
-    //printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
-    print_tree(tree);
-    printf("\n");
-    read_file(tree, *trash_size, file);
-    fclose(file);
-    system("clear");
-    printf("\ndescompactaion finished.\n\n");
-    return 0;
 }

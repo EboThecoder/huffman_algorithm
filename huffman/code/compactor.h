@@ -62,8 +62,7 @@ node *build_tree();
  * @brief lê o arquivo "path.txt", lê o arquivo a ser compactado e salva na pasta
  * compacted_files o arquivo compacted_file compactado 
  * 
- * @return zero, caso não haja erro, e qualquer outro inteiro, caso contrário
  */
-int compact();
+void compact();
 
 #endif

@@ -11,7 +11,8 @@
 
 int main()
 {
-    int a;
+    system("clear");
+    char ch = 0;
     printf("_____________________________________________________________________________\n");
     printf("||                                                                         ||\n");
     printf("||                                                                         ||\n");
@@ -31,28 +32,33 @@ int main()
     printf("||                                                                         ||\n");         
     printf("||                                                                         ||\n");                 
     printf("||   Ebert Henrique - Rafael Anacleto - Tiago Beltrão - Ronaldo Cândido    ||\n");         
-    printf("||                                                                         ||\n");    
-    printf("||_________________________________________________________________________||\n\n");
-
-    while(a != 3)
+    printf("||                                                                         ||\n");
+    printf("||_______________Pressione qualquer tecla para continuar:__________________||\n\n");
+    getc(stdin);
+    system("clear");
+    printf("-------------------------MENU-------------------------\n\n");
+    printf("Digite [1] para compactar.\nDigite [2] para descompactar.\nDigite [3] para sair.\n\n");
+    printf("Digite: ");
+    do
     {
-        printf("Menu:\n\nDigite [1] para compactar.\nDigite [2] para descompactar.\nDigite [3] para sair.\n\n");
-        printf("Digite: ");
-        scanf("%d", &a);
-        if(a == 1)
+        ch = getc(stdin);;
+        if(ch - '0' == 1)
         {
-            if(compact())
-            {
-                printf("Retornando para o menu...\n\n");
-            }
+            compact();
+            printf("Retornando para o menu...\n\n");
         }
-        if(a == 2)
+        if (ch - '0' == 2)
         {
-            if (descompact())
-            {
-                printf("Retornando para o menu...\n\n");
-            }
+            descompact();
+            printf("Retornando para o menu...\n\n");
         }
-    }
+        if(ch - '0' == 1 || ch - '0'==2)
+        {
+            printf("-------------------------MENU-------------------------\n\n");
+            printf("Digite [1] para compactar.\nDigite [2] para descompactar.\nDigite [3] para sair.\n\n");
+            printf("Digite: ");
+        }
+        //else system("clear");
+    } while (ch - '0' != 3);
     return 0;
 }
