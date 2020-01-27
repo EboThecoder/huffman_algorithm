@@ -20,7 +20,7 @@ typedef struct heap
 
 
 /**
- * @brief Monta a Heap
+ * @brief Monta a heap
  * 
  * @return Retorna o ponteiro pra Heap 
  */
@@ -56,11 +56,11 @@ int get_left_index(heap *heap, int i);
  */
 int get_right_index(heap *heap, int i);
 /**
- * @brief Troca os valores contidos nos dois ponteiros pra void
+ * @brief Troca os valores contidos em dois ponteiros para void
  * 
  * @param u O ponteiro para void 
  * @param v O ponteiro para void
- * @param len O tamanho do dados dos ponteiros
+ * @param len O tamanho do dado dos ponteiros
  */
 void swap(void *u, void *v, size_t len);
 
@@ -74,7 +74,7 @@ void print_heap(heap *heap);
 
 
 /**
- * @brief Ajeita a estrutura da Heap a partir do índice retornando suas propriedades
+ * @brief Ajeita a estrutura da Heap a partir do índice restaurando suas propriedades
  * 
  * @param heap O ponteiro para Heap
  * @param i Índice

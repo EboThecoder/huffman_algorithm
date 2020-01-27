@@ -123,8 +123,9 @@ node *build_tree(heap *heap)
     FILE *path = fopen("path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
-    printf("\nConstruindo heap...\n");
+    printf("\nLendo arquivo...\n");
     FILE *file = fopen(path_string, "r");
+
     while (fscanf(file, "%c", &ch) != EOF)
     {
         node *node = create_node();

@@ -29,6 +29,16 @@ void read_first_two_bytes(FILE *file, unsigned short *trash_size, unsigned short
 
 int main()
 {
-    F
-    if(feof(file)) printf("at vazio");
+    FILE* fp = fopen("../files/m.mp3", "r");
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp), sla;
+    printf("tamnho %ld\n", size);
+    fseek(fp, 0, SEEK_SET);
+    while(feof(fp)!= 1)
+    {
+        getc(fp);
+        sla = ftell(fp);
+        
+        printf("%f %% \n", 100.0*sla/size);
+    }
 }

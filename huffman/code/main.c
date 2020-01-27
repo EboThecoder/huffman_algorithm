@@ -50,11 +50,13 @@ int main()
         ch = getc(stdin);;
         if(ch - '0' == 1)
         {
+            system("clear");
             compact();
             printf("Retornando para o menu...\n\n");
         }
         if (ch - '0' == 2)
         {
+            system("clear");
             descompact();
             printf("Retornando para o menu...\n\n");
         }
@@ -64,7 +66,6 @@ int main()
             printf("Digite [1] para compactar.\nDigite [2] para descompactar.\nDigite [3] para sair.\n\n");
             printf("Digite: ");
         }
-        //else system("clear");
     } while (ch - '0' != 3);
     return 0;
 }
