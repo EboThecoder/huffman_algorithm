@@ -3,22 +3,9 @@
 #include "heap.h"
 #include "hash.h"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-void test_heap_creation()
+void test_heap_creation(heap *heap)
 {
-    heap* heap = create_heap();
+    heap = create_heap();
     CU_ASSERT(heap->size == 0);
     CU_ASSERT(heap->nodes);
     for(i=0; i<256;i++)
@@ -28,6 +15,18 @@ void test_heap_creation()
         CU_ASSERT_EQUAL(new_node->left , NULL);
         CU_ASSERT_EQUAL(new_node->right , NULL);
     }
+}
+
+void test_enqueue(heap* heap)
+{
+    node* new_node = create_node();
+    new_node->frequency = 10000;
+    *new_node->item = 'A';
+    enqueue(heap, new node);
+    CU_ASSERT_EQUAL(heap->nodes[1]->frequency , 10000);
+    CU_ASSERT_EQUAL(*(unsigned char*)heap->nodes[1]->item, 'A');
+    CU_ASSERT_EQUAL(heap->nodes[1]->left, NULL);
+    CU_ASSERT_EQUAL(heap->nodes[1]->right, NULL);
 }
 
 int main()
