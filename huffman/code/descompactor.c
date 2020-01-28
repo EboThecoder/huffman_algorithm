@@ -42,7 +42,7 @@ int is_bit_i_set(unsigned char c, int i)
     return mask & c;
 }
 
-void read_first_two_bytes(FILE *file, unsigned short *trash_size, unsigned short *tree_size)
+void read_first_two_bytes(FILE *file, unsigned long *trash_size, unsigned long *tree_size)
 {
     unsigned char ch[2];
     fscanf(file, "%c%c", &ch[0], &ch[1]);
@@ -81,7 +81,7 @@ node *read_tree(FILE *file)
     return tree;
 }
 
-void read_file(node* tree, unsigned short trash_size, FILE *file)
+void read_file(node* tree, unsigned long trash_size, FILE *file)
 {
     node* aux = tree;
     unsigned char ch, next_ch;
@@ -127,7 +127,7 @@ void descompact()
     if (check() != ERROR)
     {
         FILE *file = fopen("../compacted_files/compacted_file", "r");
-        unsigned short *trash_size = allocate_counter(), *tree_size = allocate_counter();
+        unsigned long *trash_size = allocate_counter(), *tree_size = allocate_counter();
         read_first_two_bytes(file, trash_size, tree_size);
         node *tree = read_tree(file);
         printf("Obtendo árvore...");

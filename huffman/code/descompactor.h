@@ -26,7 +26,7 @@ int is_bit_i_set(unsigned char c, int i);
  * @param trash_size contador do tamanho do lixo
  * @param tree_size contador do tamanho da árvore
  */
-void read_first_two_bytes(FILE *file, unsigned short *trash_size, unsigned short *tree_size);
+void read_first_two_bytes(FILE *file, unsigned long *trash_size, unsigned long *tree_size);
 
 /**
  * @brief lê os caracteres da árvore escrita em pre-órdem no arquivo
@@ -43,7 +43,7 @@ node *read_tree(FILE *file);
  * @param trash_size tamanho do lixo
  * @param file arquivo compactado
  */
-void read_file(node *tree, unsigned short trash_size, FILE *file);
+void read_file(node *tree, unsigned long trash_size, FILE *file);
 
 /**
  * @brief lê o arquivo em "../compacted_files/compacted_file", descompacta o arquivo nele contido

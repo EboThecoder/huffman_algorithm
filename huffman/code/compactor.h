@@ -22,7 +22,7 @@ int check_path();
  * @param map hash table para os cálculos necessários
  * @param trash_size contador para obter o tamanho do lixo
  */
-void get_trash_size(hash *map, unsigned short *trash_size);
+void get_trash_size(hash *map, unsigned long *trash_size);
 
 /**
  * @brief substitui um bit por 1 em um caractere
@@ -40,7 +40,7 @@ unsigned char set_bit(unsigned char c, int i);
  * @param tree_size ponteiro para o tamanho da árvore
  * @param compacted_file arquivo para salvar
  */
-void save_first_2_bytes(unsigned short *trash_size, unsigned short *tree_size, FILE *compacted_file);
+void save_first_2_bytes(unsigned long *trash_size, unsigned long *tree_size, FILE *compacted_file);
 
 /**
  * @brief Salva os bytes do arquivo recém codificado no arquivo compactado

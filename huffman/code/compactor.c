@@ -45,7 +45,7 @@ int check_path()
     
 }
 
-void get_trash_size(hash *map, unsigned short *trash_size)
+void get_trash_size(hash *map, unsigned long *trash_size)
 {
     for (int i = 0; i < 256; i++)
     {
@@ -63,7 +63,7 @@ unsigned char set_bit(unsigned char c, int i)
     return mask | c;
 }
 
-void save_first_2_bytes(unsigned short *trash_size, unsigned short *tree_size, FILE *compacted_file)
+void save_first_2_bytes(unsigned long *trash_size, unsigned long *tree_size, FILE *compacted_file)
 {
     unsigned char ch1 = 0, ch2 = 0;
     //printf("trash size %d\ntree size %d\n", *trash_size, *tree_size);
@@ -175,7 +175,7 @@ void compact()
 
         hash *map = create_hash_table();
         bool bits[MAX_DEPTH];
-        unsigned short *tree_size, *trash_size;
+        unsigned long *tree_size, *trash_size;
         tree_size = allocate_counter();
         trash_size = allocate_counter();
         printf("\nConstruindo hash table...\n");

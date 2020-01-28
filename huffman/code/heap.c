@@ -51,16 +51,16 @@ void print_heap(heap *heap)
         if (*(unsigned char *)heap->nodes[i]->item == '\\')
         {
             if (i == heap->size)
-                printf("%c%c %d\n", *(unsigned char *)heap->nodes[i]->item, *((unsigned char *)heap->nodes[i]->item + 1), heap->nodes[i]->frequency);
+                printf("%c%c %ld\n", *(unsigned char *)heap->nodes[i]->item, *((unsigned char *)heap->nodes[i]->item + 1), heap->nodes[i]->frequency);
             else
-                printf("%c%c %d| ", *(unsigned char *)heap->nodes[i]->item , * ((unsigned char *)heap->nodes[i]->item + 1), heap->nodes[i]->frequency);
+                printf("%c%c %ld| ", *(unsigned char *)heap->nodes[i]->item , * ((unsigned char *)heap->nodes[i]->item + 1), heap->nodes[i]->frequency);
         }
         else
         {
             if (i == heap->size)
-                printf("%c %d\n", *(unsigned char *)heap->nodes[i]->item, heap->nodes[i]->frequency);
+                printf("%c %ld\n", *(unsigned char *)heap->nodes[i]->item, heap->nodes[i]->frequency);
             else
-                printf("%c %d| ", *(unsigned char *)heap->nodes[i]->item, heap->nodes[i]->frequency);
+                printf("%c %ld| ", *(unsigned char *)heap->nodes[i]->item, heap->nodes[i]->frequency);
         }
     }
     printf("\n");
@@ -109,11 +109,8 @@ void enqueue(heap *heap, node *new_node)
 {
     int i;
     i = is_in_heap(heap, new_node->item);
-    if (heap->size >= __SIZE_MAX__)
-    {
-        printf("Heap overflow");
-    }
-    else if (i)
+    
+    if (i)
     {
         heap->nodes[i]->frequency++;
         min_heapify(heap, i);
@@ -121,6 +118,10 @@ void enqueue(heap *heap, node *new_node)
     }
     else
     {
+        if (heap->size >= 256)
+        {
+            printf("Heap overflow");
+        }
         heap->size++;
         heap->nodes[heap->size] = new_node;
         int key_index = heap->size;

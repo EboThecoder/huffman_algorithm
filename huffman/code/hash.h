@@ -22,7 +22,7 @@ typedef struct hash_node
 {
     void *key;
     int depth;
-    int frequency;
+    unsigned long frequency;
     bool bits[MAX_DEPTH];
 } hash_node;
 
@@ -63,7 +63,7 @@ void print_bits(bool *bits, int size);
  * @param frequency the frequency do item na folha para salvar na hash table
  * @param bits Um array de bits para salvar na hash table
  */
-void put(hash *hash, void *key, int depth, int frequency, bool *bits);
+void put(hash *hash, void *key, int depth, unsigned long frequency, bool *bits);
 
 /**
  * @brief Cria uma hash table a partir de folhas da árvore
@@ -75,7 +75,7 @@ void put(hash *hash, void *key, int depth, int frequency, bool *bits);
  * @param jump A informação para preencher o array de bits
  * @param tree_size Um ponteiro de contador para inteiro para obter o tamanho da árvore
  */
-void build_map(node *tree, hash *map, int depth, bool *bits, int jump, unsigned short *tree_size);
+void build_map(node *tree, hash *map, int depth, bool *bits, int jump, unsigned long *tree_size);
 
 /**
  * @brief imprime a hash table na tela

@@ -17,6 +17,19 @@ node *create_node()
     return new_node;
 }
 
+node *create_node_test(unsigned char item, node* left, node* right, unsigned long frequency)
+{
+    printf("oi 10\n");
+    node *new_node = (node *)malloc(sizeof(node));
+    new_node->item = (void *)malloc(2 * sizeof(unsigned char));
+    *(unsigned char *)new_node->item = item;
+    new_node->frequency = frequency;
+    new_node->left = left;
+    new_node->right = right;
+    printf("oi 8\n");
+    return new_node;
+}
+
 node *create_tree(void *item, node *left, node *right)
 {
     node *new_tree = (node *)malloc(sizeof(node));
@@ -60,9 +73,9 @@ void save_tree(node *tree, FILE *compacted_file)
     }
 }
 
-unsigned short *allocate_counter()
+unsigned long *allocate_counter()
 {
-    unsigned short *cont = (unsigned short *)malloc(sizeof(unsigned short));
+    unsigned long *cont = (unsigned long *)malloc(sizeof(unsigned long));
     *cont = 0;
     return cont;
 }

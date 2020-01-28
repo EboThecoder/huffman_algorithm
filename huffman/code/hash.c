@@ -30,7 +30,7 @@ void print_bits(bool *bits, int size)
     printf("depth : %d\n", size);
 }
 
-void put(hash *hash, void *key, int depth, int frequency, bool *bits)
+void put(hash *hash, void *key, int depth, unsigned long frequency, bool *bits)
 {
     if (hash->size >= 256)
     {
@@ -55,7 +55,7 @@ void put(hash *hash, void *key, int depth, int frequency, bool *bits)
     }
 }
 
-void build_map(node *tree, hash *map, int depth, bool *bits, int jump, unsigned short* tree_size)
+void build_map(node *tree, hash *map, int depth, bool *bits, int jump, unsigned long* tree_size)
 {
     *tree_size+= 1;
     
@@ -88,7 +88,7 @@ void print_map(hash* hash)
         if(hash->table[i]==NULL) printf(" %d (NULL)\n", i);
         else
         {
-            printf("%d | key %c | depth %d | frequency %d | bits ", i, *(unsigned char*)hash->table[i]->key, hash->table[i]->depth, hash->table[i]->frequency);
+            printf("%d | key %c | depth %d | frequency %ld | bits ", i, *(unsigned char*)hash->table[i]->key, hash->table[i]->depth, hash->table[i]->frequency);
             for(int j=0;j<hash->table[i]->depth; j++)
             {
                 printf("%d", hash->table[i]->bits[j]);

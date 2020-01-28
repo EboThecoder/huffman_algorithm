@@ -3,77 +3,77 @@
 #include "heap.h"
 #include "hash.h"
 
-void test_heap_creation(heap *heap)
+heap* h;
+
+void test_h_creation()
 {
-    heap = create_heap();
-    CU_ASSERT(heap->size == 0);
-    CU_ASSERT(heap->nodes);
-    for(i=0; i<256;i++)
+    printf("oi 6\n");
+    h = create_heap();
+    CU_ASSERT(h->size == 0);
+    for(int i=0; i<256;i++)
     {
-        CU_ASSERT_EQUAL('*', *(unsigned char *)new_node->item);
-        CU_ASSERT_EQUAL(new_node->frequency , 1);
-        CU_ASSERT_EQUAL(new_node->left , NULL);
-        CU_ASSERT_EQUAL(new_node->right , NULL);
+        CU_ASSERT_EQUAL('*', *(unsigned char *)h->nodes[i]->item);
+        CU_ASSERT_EQUAL(h->nodes[i]->frequency , 1);
+        CU_ASSERT_EQUAL(h->nodes[i]->left , NULL);
+        CU_ASSERT_EQUAL(h->nodes[i]->right , NULL);
     }
 }
 
-void test_enqueue(heap* heap)
+void test_enqueue()
 {
-    node* new_node = create_node();
-    new_node->frequency = 10000;
-    *new_node->item = 'A';
-    enqueue(heap, new node);
-    CU_ASSERT_EQUAL(heap->nodes[1]->frequency , 10000);
-    CU_ASSERT_EQUAL(*(unsigned char*)heap->nodes[1]->item, 'A');
-    CU_ASSERT_EQUAL(heap->nodes[1]->left, NULL);
-    CU_ASSERT_EQUAL(heap->nodes[1]->right, NULL);
+    printf("oi 5\n");
+    enqueue(h, create_node_test('A', NULL, NULL, 10000));
+    printf("oi 7\n");
+    enqueue(h, create_node_test('B', NULL, NULL, 613));
+    enqueue(h, create_node_test('C', NULL, NULL, 137));
+    enqueue(h, create_node_test('D', NULL, NULL, 4238));
+    enqueue(h, create_node_test('E', NULL, NULL, 480));
+    enqueue(h, create_node_test('F', NULL, NULL, 257));
+    printf("\n");
+    print_heap(h);
+    /*CU_ASSERT_EQUAL(h->nodes[1]->frequency , 137);
+    CU_ASSERT_EQUAL(*(unsigned char*)h->nodes[1]->item, 'C');
+    CU_ASSERT_EQUAL(h->nodes[2]->frequency, 2);
+    CU_ASSERT_EQUAL(*(unsigned char *)h->nodes[1]->item, 'J');
+    CU_ASSERT_EQUAL(h->nodes[3]->frequency, 2);
+    CU_ASSERT_EQUAL(*(unsigned char *)h->nodes[1]->item, 'J');
+    CU_ASSERT_EQUAL(h->nodes[4]->frequency, 2);
+    CU_ASSERT_EQUAL(*(unsigned char *)h->nodes[1]->item, 'J');
+    CU_ASSERT_EQUAL(h->nodes[5]->frequency, 2);
+    CU_ASSERT_EQUAL(*(unsigned char *)h->nodes[1]->item, 'J');
+    CU_ASSERT_EQUAL(h->nodes[6]->frequency, 2);
+    CU_ASSERT_EQUAL(*(unsigned char *)h->nodes[1]->item, 'J');
+    */
 }
 
 int main()
 {
     CU_pSuite pSuite = NULL;
-
+    printf("oi 2\n");
     if (CUE_SUCCESS != CU_initialize_registry())
         return CU_get_error();
 
-    pSuite = CU_add_suite("Basic_Test_Suite1", init_suite, clean_suite);
+    pSuite = CU_add_suite("Basic_Test_Suite1", 0, 0);
 
     if (NULL == pSuite)
     {
         CU_cleanup_registry();
         return CU_get_error();
     }
-
-    if ((NULL == CU_add_test(pSuite, "\n\n... Testing Heap Creation...\n\n", test_create_heap)))
+    printf("oi\n");
+    if ((NULL == CU_add_test(pSuite, "\n\n... Testing h Creation...\n\n", test_h_creation)))
+    {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+    printf("oi 3\n");
+    if ((NULL == CU_add_test(pSuite, "\n\n... Testing h enqueue...\n\n", test_enqueue)))
     {
         CU_cleanup_registry();
         return CU_get_error();
     }
 
-    if ((NULL == CU_add_test(pSuite, "\n\n... Testing Heap Enqueue...\n\n", test_enqueue)))
-    {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    if ((NULL == CU_add_test(pSuite, "\n\n... Testing Heap Dequeue...\n\n", test_dequeue)))
-    {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    if ((NULL == CU_add_test(pSuite, "\n\n... Testing Tree Building...\n\n", test_tree_building)))
-    {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
-    if ((NULL == CU_add_test(pSuite, "\n\n... Testing New Hash Mapping...\n\n", test_new_hash_mapping)))
-    {
-        CU_cleanup_registry();
-        return CU_get_error();
-    }
-
+    printf("oi 4\n");
     CU_basic_run_tests();
     CU_cleanup_registry();
     return CU_get_error();

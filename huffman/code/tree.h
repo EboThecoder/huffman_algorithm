@@ -10,7 +10,7 @@
 typedef struct node
 {
     void *item;
-    int frequency;
+    unsigned long frequency;
     struct node *left;
     struct node *right;
 } node;
@@ -58,7 +58,7 @@ void save_tree(node *tree, FILE *compacted_file);
  * 
  * @return O ponteiro do contador
  */
-unsigned short *allocate_counter();
+unsigned long *allocate_counter();
 
 //void deallocate_tree(node *tree);
 
