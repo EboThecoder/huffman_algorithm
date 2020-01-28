@@ -46,6 +46,15 @@ void test_enqueue()
     */
 }
 
+void test_dequeue(heap* heap)
+{
+    node* dequeue_t = dequeue(heap);
+    CU_ASSERT_EQUAL(dequeue_t, 10000);
+    CU_ASSERT_EQUAL(*(unsigned char*)dequeue_t->item, 'A');
+    CU_ASSERT_EQUAL(dequeue_t->left, NULL);
+    CU_ASSERT_EQUAL(dequeue_t->right, NULL);
+}
+
 int main()
 {
     CU_pSuite pSuite = NULL;
