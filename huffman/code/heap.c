@@ -10,7 +10,7 @@ heap *create_heap()
 {
     heap *new_heap = (heap *)malloc(sizeof(heap));
     new_heap->size = 0;
-    for (int i = 1; i < 256; i++)
+    for (int i = 1; i <= 256; i++)
     {
         new_heap->nodes[i] = create_node();
     }
@@ -94,7 +94,7 @@ int is_in_heap(heap *heap, void *item)
 {
     int i;
     if (*(unsigned char *)item == '*') return 0;
-    for (i = 1; i <= heap->size; i++)
+    for (i = 1; i <= heap->size ; i++)
     {
         if (*(unsigned char *)item == '\\' && *(unsigned char *)heap->nodes[i]->item == '\\')
         {
@@ -109,7 +109,6 @@ void enqueue(heap *heap, node *new_node)
 {
     int i;
     i = is_in_heap(heap, new_node->item);
-    
     if (i)
     {
         heap->nodes[i]->frequency++;
@@ -120,7 +119,7 @@ void enqueue(heap *heap, node *new_node)
     {
         if (heap->size >= 256)
         {
-            printf("Heap overflow");
+            //printf("Heap overflow");
         }
         heap->size++;
         heap->nodes[heap->size] = new_node;
@@ -140,7 +139,7 @@ node *dequeue(heap *heap)
 {
     if (heap->size == 0)
     {
-        printf("Heap underflow");
+       // printf("Heap underflow");
         return NULL;
     }
     else

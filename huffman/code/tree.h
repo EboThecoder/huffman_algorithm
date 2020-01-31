@@ -15,7 +15,7 @@ typedef struct node
     struct node *right;
 } node;
 
-
+node *create_node_test(unsigned char item, unsigned long frequency);
 /**
  * @brief Cria um nó de árvores cujos filhos são ponteiros para NULL
  * e aloca 2 bytes para o ponteiro para void de items

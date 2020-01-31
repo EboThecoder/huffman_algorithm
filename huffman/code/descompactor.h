@@ -46,8 +46,8 @@ node *read_tree(FILE *file);
 void read_file(node *tree, unsigned long trash_size, FILE *file);
 
 /**
- * @brief lê o arquivo em "../compacted_files/compacted_file", descompacta o arquivo nele contido
- * e salva em "../files/descompacted_file"
+ * @brief descompacta o arquivo lido em "compacted_file_path"
+ * e salva em "../files/
  * 
  */
 void descompact();

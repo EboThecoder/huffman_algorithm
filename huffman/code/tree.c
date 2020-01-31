@@ -17,16 +17,14 @@ node *create_node()
     return new_node;
 }
 
-node *create_node_test(unsigned char item, node* left, node* right, unsigned long frequency)
+node *create_node_test(unsigned char item, unsigned long frequency)
 {
-    printf("oi 10\n");
     node *new_node = (node *)malloc(sizeof(node));
     new_node->item = (void *)malloc(2 * sizeof(unsigned char));
     *(unsigned char *)new_node->item = item;
     new_node->frequency = frequency;
-    new_node->left = left;
-    new_node->right = right;
-    printf("oi 8\n");
+    new_node->left = NULL;
+    new_node->right = NULL;
     return new_node;
 }
 

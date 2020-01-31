@@ -12,8 +12,10 @@
 
 int check()
 {
-
-    FILE *file = fopen("../compacted_files/compacted_file", "r");
+    FILE *path_fp = fopen("compacted_file_path.txt", "r");
+    char path_str[100];
+    fgets(path_str, 100, path_fp);
+    FILE *file = fopen(path_str, "r");
     if (file != NULL)
     {
         fseek(file, 0, SEEK_END);
@@ -21,7 +23,11 @@ int check()
 
         if (size == 0)
         {
-            printf("\nO arquivo a descompactar está vazio. Por favor checar \"../compacted_files/compacted_file\"\n");
+            system("clear");
+            printf("\033[0;31m"); //Set the text to the color red
+            printf("ERRO!");
+            printf("\033[0m"); //Resets the text to default color
+            printf("\n O arquivo a descompactar está vazio.\n");
             return ERROR;
         }
         else
@@ -31,7 +37,11 @@ int check()
     }
     else
     {
-        printf("\nO arquivo a descompactar não existe. Por favor checar \"../compacted_files/compacted_file\"\n");
+        system("clear");
+        printf("\n\033[0;31m"); //Set the text to the color red
+        printf("ERRO!");
+        printf("\033[0m"); //Resets the text to default color
+        printf("\n O arquivo a descompactar não existe.\n");
         return ERROR;
     }
 }
@@ -85,7 +95,19 @@ void read_file(node* tree, unsigned long trash_size, FILE *file)
 {
     node* aux = tree;
     unsigned char ch, next_ch;
-    FILE *descompacted_file = fopen("../files/descompacted_file", "w");
+
+    FILE *path_fp = fopen("compacted_file_path.txt", "r");
+    char path[100];
+    fscanf(path_fp, "%s", path);
+    int i = strlen(path);
+    while(path[i] != '.')
+    {
+        i--;
+    }
+    path[i] = '\0';
+    fclose(path_fp);
+
+    FILE *descompacted_file = fopen(path, "w");
     fscanf(file, "%c", &ch);
     while (fscanf(file, "%c", &next_ch) != EOF)
     {
@@ -126,7 +148,12 @@ void descompact()
 {
     if (check() != ERROR)
     {
-        FILE *file = fopen("../compacted_files/compacted_file", "r");
+        FILE *path_fp = fopen("compacted_file_path.txt", "r");
+        char path[100];
+        fscanf(path_fp, "%s", path);
+        fclose(path_fp);
+        FILE *file = fopen(path, "r");
+
         unsigned long *trash_size = allocate_counter(), *tree_size = allocate_counter();
         read_first_two_bytes(file, trash_size, tree_size);
         node *tree = read_tree(file);

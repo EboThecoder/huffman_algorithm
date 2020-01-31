@@ -9,7 +9,7 @@
 
 
 /**
- * @brief checa se o arquivo "path.txt" está vazio
+ * @brief checa se o arquivo lido em "file_path.txt" está vazio
  * 
  * @return "ERROR" para um erro e "!ERROR" em qualquer outro caso
  */
@@ -59,8 +59,8 @@ void save_file(hash *map, FILE *compacted_file);
 node *build_tree();
 
 /**
- * @brief lê o arquivo "path.txt", lê o arquivo a ser compactado e salva na pasta
- * compacted_files o arquivo compacted_file compactado 
+ * @brief lê o arquivo a ser compactado em "file_path.txt" e salva na pasta
+ * na mesma pasta com a extensção ".huff"
  * 
  */
 void compact();

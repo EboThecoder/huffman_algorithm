@@ -14,7 +14,7 @@
 
 int check_path()
 {
-    FILE *path_file = fopen("path.txt", "r");
+    FILE *path_file = fopen("file_path.txt", "r");
     char path[50];
     fscanf(path_file, "%s", path);
     fclose(path_file);
@@ -28,7 +28,10 @@ int check_path()
         if (size == 0)
         {
             system("clear");
-            printf("\nO arquivo a compactar está vazio. Por favor checar \"path.txt\"\n");
+            printf("\033[0;31m"); //Set the text to the color red
+            printf("ERRO!");
+            printf("\033[0m"); //Resets the text to default color
+            printf(" O arquivo a compactar está vazio. Por favor checar \"path.txt\"\n");
             return ERROR;
         }
         else
@@ -39,7 +42,10 @@ int check_path()
     else
     {
         system("clear");
-        printf("\nO arquivo a compactar não existe. Por favor checar \"path.txt\"\n");
+        printf("\033[0;31m"); //Set the text to the color red
+        printf("ERRO!");
+        printf("\033[0m"); //Resets the text to default color
+        printf(" O arquivo a compactar não existe. Por favor checar \"path.txt\"\n");
         return ERROR;
     }
     
@@ -81,7 +87,7 @@ void save_file(hash *map, FILE *compacted_file)
     int set_bit_index = 0, bits_index = 0;
 
     char path_string[50];
-    FILE *path = fopen("path.txt", "r");
+    FILE *path = fopen("file_path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
     FILE *file_to_compact = fopen(path_string, "r");
@@ -120,7 +126,7 @@ node *build_tree(heap *heap)
 
     unsigned char ch;
     char path_string[50];
-    FILE *path = fopen("path.txt", "r");
+    FILE *path = fopen("file_path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
     printf("\nLendo arquivo...\n");
@@ -186,7 +192,17 @@ void compact()
         get_trash_size(map, trash_size);
         //printf("tree size: %d, trash size: %d\n\n", *tree_size, *trash_size);
 
-        FILE *compacted_file = fopen("../compacted_files/compacted_file", "w");
+        FILE *path_fp = fopen("file_path.txt", "r");
+        char path[50];
+        fscanf(path_fp, "%s", path);
+        fclose(path_fp);
+        
+        strcat(path, ".huff");
+        FILE *compacted_file = fopen(path, "w");
+        FILE *comp_path_fp  = fopen("compacted_file_path.txt", "w");
+        fprintf(comp_path_fp, "%s", path);
+        fclose(comp_path_fp);
+
         printf("\nSalvando...\n");
         system("clear");
         save_first_2_bytes(trash_size, tree_size, compacted_file);
