@@ -110,11 +110,5 @@ void enqueue(heap *heap, node *new_node);
 node *dequeue(heap *heap);
 
 
-/*/**
- * @brief 
- * 
- * @param heap 
- */
-//void deallocate_heap(heap *heap);
 
 #endif

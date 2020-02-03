@@ -15,7 +15,7 @@
 int check_path()
 {
     FILE *path_file = fopen("file_path.txt", "r");
-    char path[50];
+    char path[150];
     fscanf(path_file, "%s", path);
     fclose(path_file);
 
@@ -31,7 +31,7 @@ int check_path()
             printf("\033[0;31m"); //Set the text to the color red
             printf("ERRO!");
             printf("\033[0m"); //Resets the text to default color
-            printf(" O arquivo a compactar está vazio. Por favor checar \"path.txt\"\n");
+            printf(" O arquivo a compactar está vazio. Por favor checar \"file_path.txt\"\n");
             return ERROR;
         }
         else
@@ -45,7 +45,7 @@ int check_path()
         printf("\033[0;31m"); //Set the text to the color red
         printf("ERRO!");
         printf("\033[0m"); //Resets the text to default color
-        printf(" O arquivo a compactar não existe. Por favor checar \"path.txt\"\n");
+        printf(" O arquivo a compactar não existe. Por favor checar \"file_path.txt\"\n");
         return ERROR;
     }
     
@@ -86,11 +86,12 @@ void save_file(hash *map, FILE *compacted_file)
     unsigned char ch, compacted_ch = 0;
     int set_bit_index = 0, bits_index = 0;
 
-    char path_string[50];
+    char path_string[150];
     FILE *path = fopen("file_path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
     FILE *file_to_compact = fopen(path_string, "r");
+
     while (fscanf(file_to_compact, "%c", &ch) != EOF)
     {
 
@@ -125,7 +126,7 @@ node *build_tree(heap *heap)
 {
 
     unsigned char ch;
-    char path_string[50];
+    char path_string[150];
     FILE *path = fopen("file_path.txt", "r");
     fscanf(path, "%s", path_string);
     fclose(path);
@@ -193,7 +194,7 @@ void compact()
         //printf("tree size: %d, trash size: %d\n\n", *tree_size, *trash_size);
 
         FILE *path_fp = fopen("file_path.txt", "r");
-        char path[50];
+        char path[150];
         fscanf(path_fp, "%s", path);
         fclose(path_fp);
         

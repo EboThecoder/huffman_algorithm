@@ -1,26 +1,15 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "rbt2.h"
 
 #define RED   'R'
 #define BLACK 'B'
 
 
-typedef struct Node {
-    int          key;
-    char         color;
-    struct Node *left;
-    struct Node *right;
-    struct Node *parent;
-} Node;
 
-// Based on CLRS algorithm, use T_Nil as a sentinel to simplify code
-struct Node  T_Nil_Node;
-Node* T_Nil = &T_Nil_Node;
-
-Node* Root = NULL;
 
 // A utility function to create a new BST node
-Node* newNode(int key)
+Node* newNode(unsigned long key)
 {
     Node *temp   = (Node*) malloc(sizeof(Node));
     temp->key    = key;
@@ -116,7 +105,7 @@ void redBlackInsertFixup(Node** Root, Node* New)
     }
     Root[0]->color = BLACK;
 }
-void redBlackInsert(Node** T, int key)
+void redBlackInsert(Node** T, unsigned long key)
 {
     Node* z =  newNode(key);
     Node* y =  T_Nil;
@@ -150,17 +139,17 @@ void redBlackInsert(Node** T, int key)
 
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-int height(Node* Root)
+unsigned long height(Node* Root)
 {
-    int h = 0;
+    unsigned long h = 0;
 
     if (Root != NULL) {
         if (Root == T_Nil)
             h = 1;
         else
         {
-            int leftHeight  = height(Root->left);
-            int rightHeight = height(Root->right);
+            unsigned long leftHeight  = height(Root->left);
+            unsigned long rightHeight = height(Root->right);
             h = MAX(leftHeight, rightHeight) + 1;
         }
     }
@@ -173,19 +162,34 @@ void printTree(Node* root)
 {
     if (root->left != T_Nil)
         printTree(root->left);
-    printf("%d ", root->key);
+    printf("%ld ", root->key);
     if (root->right != T_Nil)
         printTree(root->right);
 }
 
-int main(int argc, char* argv[])
+void reset_rbt2(Node *rbt)
 {
-    Node* Root = T_Nil;
-    int a;
-    for (int i = 0; i < 10; i++)
+    if (rbt != T_Nil)
     {
-        scanf("%d", &a);
-        redBlackInsert(&Root, a);
+        reset_rbt2(rbt->left);
+        reset_rbt2(rbt->right);
+        free(rbt);
     }
-    printTree(Root);
+}
+
+Node * rbt2_search(Node *node, unsigned long key)
+{
+    *rbt_counter+=1;
+    if (node == NULL || node->key == key)
+    {
+        return node;
+    }
+    else if (node->key > key)
+    {
+        return rbt2_search(node->left, key);
+    }
+    else
+    {
+        return rbt2_search(node->right, key);
+    }
 }

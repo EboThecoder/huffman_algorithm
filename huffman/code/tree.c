@@ -77,13 +77,3 @@ unsigned long *allocate_counter()
     *cont = 0;
     return cont;
 }
-
-void deallocate_tree(node* tree)
-{
-    if (tree != NULL)
-    {
-        deallocate_tree(tree->left);
-        deallocate_tree(tree->right);
-        free(tree);
-    }
-}

@@ -32,7 +32,7 @@ int main()
     bst_counter = allocate_counter();
     rbt_counter = allocate_counter();
     FILE* fp = fopen("plot_points.txt", "w");
-    for(unsigned long i = 10000; i<=1000000; i+=1000)
+    for(unsigned long i = 1; i<=1000000; i+=2500)
     {
         inserir(i);
         fprintf(fp, "%ld;%ld;%ld\n", i, *bst_counter, *rbt_counter);

@@ -15,7 +15,16 @@ typedef struct node
     struct node *right;
 } node;
 
+/**
+ * @brief Cria um nó de árvores cujos filhos são ponteiros para NULL
+ * e guarda os valores de frequencia e o ponteiro para o item
+ * 
+ * @param item caractere a ser salvado no ponteiro para item do nó
+ * @param frequency frequencia do caractere a ser salvada no nó
+ * @return O ponteiro para a árvore
+ */
 node *create_node_test(unsigned char item, unsigned long frequency);
+
 /**
  * @brief Cria um nó de árvores cujos filhos são ponteiros para NULL
  * e aloca 2 bytes para o ponteiro para void de items

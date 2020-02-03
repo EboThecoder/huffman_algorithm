@@ -99,31 +99,3 @@ void print_map(hash* hash)
     printf("\n");
 }
 
-void deallocate_hash(hash* hash)
-{
-    for(int i=0; i< 256 ;i++)
-    {
-        free(hash->table[i]);
-        hash->table[i] = NULL;
-    }
-    free(hash);
-}
-/*hash_node* get(hash *hash, void *key)
-{
-    int h = *(unsigned char *)key;
-    while (hash->table[h] != NULL)
-    {
-        if (*(unsigned char *)key == '\\' && *(unsigned char *)hash->table[h]->key == '\\')
-        {
-            if (*((unsigned char *)hash->table[h]->key + 1) == *((unsigned char *)key + 1))
-            {
-                return hash->table[h];
-            }
-        }
-        if (*(unsigned char *)hash->table[h]->key == *(unsigned char *)key)
-        {
-            return hash->table[h];
-        }
-        h = (h + 1) % 256;
-    }
-}*/

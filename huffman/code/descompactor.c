@@ -113,7 +113,7 @@ void read_file(node* tree, unsigned long trash_size, FILE *file)
     {
        for(int j=0; j< 8;j++)
        {
-           if(aux != tree || *(unsigned char *)aux->item == '*')
+           if(aux != tree || *(unsigned char *)aux->item == '*') //Se não é raiz folha
            {
                 if(is_bit_i_set(ch, j)) aux = aux->right;
                 else aux = aux->left;
@@ -156,8 +156,8 @@ void descompact()
 
         unsigned long *trash_size = allocate_counter(), *tree_size = allocate_counter();
         read_first_two_bytes(file, trash_size, tree_size);
-        node *tree = read_tree(file);
         printf("Obtendo árvore...");
+        node *tree = read_tree(file);
         //printf("trash size: %d\ntree size: %d\n", *trash_size, *tree_size);
         //print_tree(tree);
         printf("\n");
