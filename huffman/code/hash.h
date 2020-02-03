@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAX_DEPTH 32
+#define MAX_DEPTH 255
 #define LEFT_JUMP 0
 #define RIGHT_JUMP 1
 #define START_JUMP -1

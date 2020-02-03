@@ -36,6 +36,9 @@
 static FILE *temp_file = NULL;
 heap *h;
 unsigned char str[50];
+node* returned;
+
+
 /* The suite initialization function.
  * Opens the temporary file used by the tests.
  * Returns zero on success, non-zero otherwise.
@@ -176,9 +179,30 @@ void test_tree_building()
         parent->right = right;
         enqueue(h, parent);
     }
-    node *returned = dequeue(h);
+    returned = dequeue(h);
     check_tree(returned);
     CU_ASSERT_EQUAL(0, strcmp(str, "***B**CFEDA"));
+}
+
+void test_hash_table()
+{
+    unsigned long *tree_size = allocate_counter();
+    bool bits[MAX_DEPTH];
+    hash *map = create_hash_table();
+    build_map(returned, map, -1, bits, START_JUMP, tree_size);
+    int i;
+    for(i=0;i<=64;i++)
+    {
+        CU_ASSERT(map->table[i] == NULL);
+    }
+    for(i=65;i<=70;i++)
+    {
+        CU_ASSERT(*(unsigned char*)map->table[i]->key == i);
+    }
+    for (i = 71; i <256; i++)
+    {
+        CU_ASSERT(map->table[i] == NULL);
+    }
 }
 
     /* The main() function for setting up and running the tests.
@@ -221,6 +245,11 @@ int main()
         return CU_get_error();
     }
     if (NULL == CU_add_test(pSuite, "testing tree building", test_tree_building))
+    {
+        CU_cleanup_registry();
+        return CU_get_error();
+    }
+    if (NULL == CU_add_test(pSuite, "testing hash table building", test_hash_table))
     {
         CU_cleanup_registry();
         return CU_get_error();

@@ -35,7 +35,6 @@ void swap(void *u, void *v, size_t len)
     unsigned char *p = u, *q = v, aux;
     for (size_t i = 0; i < len; i++)
     {
-        // printf("%hhu ", q[i]);
         aux = p[i];
         p[i] = q[i];
         q[i] = aux;

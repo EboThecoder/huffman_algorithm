@@ -15,7 +15,7 @@
 typedef struct heap
 {
     int size; 
-    node *nodes[256];
+    node *nodes[257];
 } heap;
 
 

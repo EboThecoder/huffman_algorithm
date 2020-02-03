@@ -1,44 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "bst.h"
+#include "../huffman/code/tree.h"
 
-typedef struct by_tree
-{
-	int item;
-	struct by_tree* left;
-	struct by_tree* right;
-} by_tree;
 
-by_tree* create_empty_by_tree()
+bst* create_empty_by_tree()
 {
 	return NULL;
 }
 
-by_tree* create_by_tree(int item, by_tree* left, by_tree* right)
+bst* create_by_tree(unsigned long item, bst* left, bst* right)
 {
-	by_tree* new_by_tree = (by_tree*) malloc(sizeof(by_tree));
+	bst* new_by_tree = (bst*) malloc(sizeof(bst));
 	new_by_tree->item = item;
 	new_by_tree->left = left;
 	new_by_tree->right = right;
 	return new_by_tree;
 }
 
-by_tree* by_search(by_tree* bt, int item)
+bst* bst_search(bst* bt, unsigned long item)
 {
-	if(bt->item == item || bt== NULL) return bt;
+	*bst_counter += 1;
+	if (bt == NULL || bt->item == item) return bt;
 	else if(bt->item < item)
 	{
-		return by_search(bt->right, item);
+		return bst_search(bt->right, item);
 	}
 	else 
 	{
-		return by_search(bt->left, item);	
+		return bst_search(bt->left, item);	
 	}
 }
 
-by_tree* insert(by_tree* bt, int item)
+bst* insert(bst* bt, unsigned long item)
 {
-	if(bt == NULL) bt= create_by_tree(item , NULL, NULL);
+	if(bt == NULL)
+	{
+		bt= create_by_tree(item , NULL, NULL);
+		return bt;	
+	}
 	else if(bt->item <= item)
 	{
 		bt->right = insert(bt->right, item);
@@ -50,7 +51,7 @@ by_tree* insert(by_tree* bt, int item)
 	return bt;
 }
 
-int node_degree(by_tree* bt)
+unsigned long node_degree(bst* bt)
 {
 	if(bt->left == NULL)
 	{
@@ -64,7 +65,7 @@ int node_degree(by_tree* bt)
 	return 2;
 }
 
-by_tree* remove_node(by_tree* bt, int item)
+bst* remove_node(bst* bt, unsigned long item)
 {
 	if(bt == NULL) return bt;
 	if(bt->item > item) bt->left= remove_node(bt->left, item);
@@ -73,20 +74,20 @@ by_tree* remove_node(by_tree* bt, int item)
 	{
 		if(node_degree(bt)==0)
 		{
-			by_tree* aux = bt;
+			bst* aux = bt;
 			bt= NULL;
 			free(aux);
 		}
 		else if(node_degree(bt)==1)
 		{
-			by_tree* aux= bt;
+			bst* aux= bt;
 			if(bt->left == NULL) bt= bt->right;
 			else bt= bt->left;
 			free(aux);
 		}
 		else
 		{
-			by_tree* left_side= bt->left;
+			bst* left_side= bt->left;
 			while(left_side->right!=NULL) left_side= left_side->right;
 			bt->item = left_side->item;
 			left_side= remove_node(left_side, item);
@@ -96,11 +97,11 @@ by_tree* remove_node(by_tree* bt, int item)
 	
 }
 
-void print_pre_order(by_tree* bt)
+void print_pre_order(bst* bt)
 {	
 	if(bt!=NULL)
 	{
-		printf("%d(", bt->item);
+		printf("%ld(", bt->item);
 		print_pre_order(bt->left);
 		printf(")(");
 		print_pre_order(bt->right);
@@ -108,34 +109,44 @@ void print_pre_order(by_tree* bt)
 	}
 }
 
+void reset_bst(bst *bt)
+{
+	if (bt != NULL)
+	{
+		reset_bst(bt->left);
+		reset_bst(bt->right);
+		free(bt);
+	}
+}
 
-void print_in_order(by_tree* bt)
+void print_in_order(bst* bt)
 {	
 	if(bt!=NULL)
 	{
 		print_in_order(bt->left);
-		printf("%d ", bt->item);
+		printf("%ld ", bt->item);
 		print_in_order(bt->right);
 	}
 }
 
-int main()
+
+/*int main()
 {
-	by_tree* bt= create_empty_by_tree();
-	bt= insert(bt, 1);
-	bt= insert(bt, 2);
-	bt= insert(bt, 3);
-	bt= insert(bt, 4);
-	bt= insert(bt, 5);
-	bt= insert(bt, 6);
-	bt= insert(bt, 7);
-	bt= insert(bt, 8);
+	bst *bt = create_empty_by_tree();
+	bt = insert(bt, 1);
+	bt = insert(bt, 2);
+	bt = insert(bt, 3);
+	bt = insert(bt, 4);
+	bt = insert(bt, 5);
+	bt = insert(bt, 6);
+	bt = insert(bt, 7);
+	bt = insert(bt, 8);
 	printf("   (");
 	print_pre_order(bt);
 	printf(") \n");
 	printf("\n\n");
-	bt= remove_node(bt, 1);
+	bt = remove_node(bt, 1);
 	printf("   (");
 	print_pre_order(bt);
 	printf(") \n");
-}
+}*/
